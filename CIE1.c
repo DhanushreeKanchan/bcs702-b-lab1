@@ -1,21 +1,20 @@
 #include <stdio.h>
-#include <time.h>
+#include <omp.h>  // Include OpenMP library
 
 int main() {
-    clock_t start, end;
-    double time_taken;
-    
+    double start, end, time_taken;
 
-    start = clock();  // Start time
+    start = omp_get_wtime();  // Start time
 
-    // Simple operation: Sum of first 100000 numbers
+    // Simple operation: Square numbers from 1 to 1,000,000
     for (int i = 1; i <= 1000000; i++) {
-        int x =i*i;
+        int x = i * i;
     }
 
-    end = clock();  // End time
+    end = omp_get_wtime();  // End time
 
-    time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    time_taken = end - start;
+
     printf("Execution time = %f seconds\n", time_taken);
 
     return 0;
